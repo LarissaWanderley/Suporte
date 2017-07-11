@@ -1,0 +1,42 @@
+﻿<nav class="navbar navbar-default">
+    <div class="container">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            @Html.ActionLink("Fazendas", "Index", "Home", null, new { @class = "brand" })
+            <p>
+                @if (Session["usuarioLogado"] != null)
+                {
+                    @: Bem-Vindo
+                    @Session["usuarioLogado"]
+                    @Html.ActionLink("Logout", "Logout", "Autenticacao")
+                }
+                else
+                {
+                    @: Olá Visitante,
+                    @Html.ActionLink("Login", "Index", "Autenticacao")
+                }
+            </p>
+
+        </div>
+
+        <div class="collapse navbar-collapse" id="collapse-navbar">
+            <ul class="nav navbar-nav pull-right">
+               
+                <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn btn-default navbar-btn btn-xs" })</li>
+                <li>@Html.ActionLink("Grupo", "Index", "Grupo", null, new { @class = "btn btn-default navbar-btn btn-xs" })</li>
+                <li>@Html.ActionLink("Subgrupo", "Index", "SubGrupo", null, new { @class = "btn btn-default navbar-btn btn-xs" })</li>
+                <li>@Html.ActionLink("Movimento", "Index", "Movimento", null, new { @class = "btn btn-default navbar-btn btn-xs" })</li>
+                <li>@Html.ActionLink("Perfil", "Index", "Perfil", null, new { @class = "btn btn-default navbar-btn btn-xs" })</li>
+                <li>@Html.ActionLink("Usuários", "Index", "Usuario", null, new { @class = "btn btn-default navbar-btn btn-xs" })</li>
+                <li>@Html.ActionLink("Bootstrap", "Bootstrap", "Home", null, new { @class = "btn btn-default navbar-btn btn-xs" })</li>
+            </ul>
+        </div>
+    </div>
+</nav>

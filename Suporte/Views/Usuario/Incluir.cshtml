@@ -1,0 +1,113 @@
+﻿@model Suporte.Dominio.Usuario
+@using (Html.BeginForm("Incluir", "Usuario", FormMethod.Post))
+{
+    <fieldset>
+        <legend>Dados Pessoais</legend>
+
+        @Html.LabelFor(u => u.TxNome, "Nome:")
+        @Html.TextBoxFor(u => u.TxNome, new { @class = "form-control" })
+        @Html.ValidationMessageFor(u => u.TxNome)
+
+        @Html.LabelFor(u => u.TxSobreNome, "Sobrenome:")
+        @Html.TextBoxFor(u => u.TxSobreNome, new { @class = "form-control" })
+        @Html.ValidationMessageFor(u => u.TxSobreNome)
+
+        @Html.LabelFor(u => u.TxCpf, "CPF:")
+        @Html.TextBoxFor(u => u.TxCpf, new { @class = "form-control" })
+        @Html.ValidationMessageFor(u => u.TxCpf)
+
+        @Html.LabelFor(u => u.TxEmail, "Email:")
+        @Html.TextBoxFor(u => u.TxEmail, new { @class = "form-control" })
+        @Html.ValidationMessageFor(u => u.TxEmail)
+
+        @Html.LabelFor(u => u.TxSenha, "Senha:")
+        @Html.PasswordFor(u => u.TxSenha, new { @class = "form-control" })
+        @Html.ValidationMessageFor(u => u.TxSenha)
+
+        @*@Html.LabelFor(u => u.DataDeNascimento, "Data De Nascimento:")
+        @Html.EditorFor(u => u.DataDeNascimento)
+        @Html.ValidationMessageFor(u => u.DataDeNascimento)
+        <div class="control-group">
+            @Html.RadioButtonFor(u => u.Sexo, Fazendas.Dominio.Sexo.Masculino)
+            @Html.LabelFor(u => u.Sexo, "Masculino")
+
+            @Html.RadioButtonFor(u => u.Sexo, Fazendas.Dominio.Sexo.Feminino)
+            @Html.LabelFor(u => u.Sexo, "Feminino")
+        </div>*@
+</fieldset>
+
+    @*<fieldset>
+        <legend>Dados de Entrega</legend>
+
+        @Html.LabelFor(u => u.Endereco, "Endereço:")
+        @Html.TextBoxFor(u => u.Endereco)
+        @Html.ValidationMessageFor(u => u.Endereco)
+
+        @Html.LabelFor(u => u.Complemento, "Complemento:")
+        @Html.TextBoxFor(u => u.Complemento)
+        @Html.ValidationMessageFor(u => u.Complemento)
+
+        @Html.LabelFor(u => u.CEP, "CEP:")
+        @Html.TextBoxFor(u => u.CEP)
+        @Html.ValidationMessageFor(u => u.CEP)
+
+        @Html.LabelFor(u => u.Estado, "Estado:")
+        @Html.DropDownListFor(u => u.Estado,
+            new SelectList(Enum.GetValues(typeof(Fazendas.Dominio.Estado))))
+
+    </fieldset>
+
+    <div>
+        @Html.CheckBoxFor(u => u.RecebePromocoes)
+        Desejo receber informações sobre promoções
+    </div>*@
+
+    <input type="submit" value="Cadastrar" class="btn btn-large" />
+}
+        @section Scripts {
+    <script type="text/javascript" src="~/Content/js/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="~/Content/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="~/Content/js/jquery.validate.unobtrusive.js"></script>
+}
+
+
+@*<form action="@Url.Action("Cadastra")" method="post">
+    <fieldset>
+        <legend>Dados Pessoais</legend>
+
+        <label for="nome">Nome: </label>
+        <input id="nome" type="text" name="usuario.Nome" />
+
+        <label for="email">E-mail: </label>
+        <input id="email" type="text" name="usuario.Email" />
+
+        <label for="senha">Senha:</label>
+        <input id="senha" type="password" name="usuario.Senha" />
+
+        <label for="dataDeNascimento">Data de Nascimento: </label>
+        <input id="dataDeNascimento" type="text" name="usuario.DataDeNascimento" />
+    </fieldset>
+
+    <fieldset>
+        <legend>Dados de Entrega</legend>
+
+        <label for="endereco">Endereço: </label>
+        <input id="endereco" type="text" name="usuario.Endereco" />
+
+        <label for="complemento">Complemento: </label>
+        <input id="complemento" type="text" name="usuario.Complemento" />
+
+        <label for="cep">CEP: </label>
+        <input id="cep" type="text" name="usuario.CEP" />
+
+        <label for="observacoes">Observações: </label>
+        <textarea id="observacoes" name="usuario.Observacoes"></textarea>
+    </fieldset>
+    <div>
+        <input name="usuario.RecebePromocoes" type="checkbox" value="true" />
+        Desejo receber informações sobre promoções
+    </div>
+
+    <input type="submit" value="Cadastrar" class="btn btn-large" />
+
+</form>*@
