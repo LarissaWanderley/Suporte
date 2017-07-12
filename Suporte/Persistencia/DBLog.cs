@@ -20,7 +20,7 @@ namespace Suporte.Persistencia
 
             Log procurado = new Log();
                 
-            procurado = ExecCmdSQL(cmdText: "SELECT ISNULL(IdLog,0) as IdLog FROM tbLog WHERE TxTabela = @Tabela AND IdChave = @IdChave ORDER BY IdChave desc "
+            procurado = ExecCmdSQL(cmdText: "SELECT ISNULL(IdLog,0) as IdLog FROM tbLog WHERE TxTabela = @Tabela AND IdChave = @IdChave ORDER BY IdLog desc "
             , parameters: paramentros).FirstOrDefault();
 
             return (procurado == null) ? 0 : procurado.Id;

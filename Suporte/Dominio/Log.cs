@@ -16,7 +16,7 @@ namespace Suporte.Dominio
         public DateTime DtTransacao { get; set; }
         public string TxUrl { get; set; }
         public string IpUsuario { get; set; }
-        public int IdLogAnterior { get; set; }
+        public int? IdLogAnterior { get; set; }
 
         //[ForeignKey("IdLogAnterior")]
         //public virtual Log LogAnterior { get; set; }

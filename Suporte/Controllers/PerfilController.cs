@@ -57,7 +57,13 @@ namespace Fazendas.Controllers
                 log.TxTabela = "Perfil";
                 log.DtTransacao = DateTime.Now;
                 log.TxUrl = Request.Url.AbsoluteUri;
-                log.IdLogAnterior = DBLog.PesqLogAnterior(log.TxTabela, log.IdChave);
+
+                int i = DBLog.PesqLogAnterior(log.TxTabela, log.IdChave);
+                if (i > 0)
+                {
+                    log.IdLogAnterior = i ;
+                }
+               
                 DBLog.Save(log);
 
 
