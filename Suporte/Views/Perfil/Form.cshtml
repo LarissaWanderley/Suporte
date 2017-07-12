@@ -7,7 +7,7 @@
     @if (ViewBag.perfil.Id != 0)
     {
         <label for="nome">Id:</label>
-        <input id="nome" name="perfil.Id" value="@ViewBag.perfil.Id" class="form-control" maxlength="5" size="5" />
+        <input id="nome" name="perfil.Id" value="@ViewBag.perfil.Id" class="form-control" maxlength="5" size="5"  readonly="readonly"/>
     }
     <label for="nome">Nome:</label>
     <input id="nome" name="perfil.TxPerfil" value="@ViewBag.perfil.TxPerfil" class="form-control" maxlength="30" size="30" />

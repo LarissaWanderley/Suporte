@@ -16,13 +16,10 @@ namespace Suporte.Dominio
         public DateTime DtTransacao { get; set; }
         public string TxUrl { get; set; }
         public string IpUsuario { get; set; }
-        public int? IdLogAnterior { get; set; }
+        public int IdLogAnterior { get; set; }
 
-        [NotMapped]
-        public Error Erro { get; set; }
-
-        [ForeignKey("IdLogAnterior")]
-        public virtual Log LogAnterior { get; set; }
+        //[ForeignKey("IdLogAnterior")]
+        //public virtual Log LogAnterior { get; set; }
     }
      [DBBroker.Mapping.DBMappedClass(Table = "tbLogDetalhe", PrimaryKey = "IdLogDetalhe")]
     public class LogDetalhe 
@@ -32,9 +29,7 @@ namespace Suporte.Dominio
         public int? IdLog { get; set; }
         public string TxObjeto { get; set; }
 
-        [NotMapped]
-        public Error Erro { get; set; }
-
+      
         [ForeignKey("IdLog")]
         public virtual Log Log { get; set; }
     }

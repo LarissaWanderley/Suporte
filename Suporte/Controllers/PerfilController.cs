@@ -37,7 +37,7 @@ namespace Fazendas.Controllers
         [HttpPost]
         public ActionResult Gravar(Perfil perfil)
         {
-            if (perfil.Id < 1)
+            if ( ModelState.IsValid && perfil.Id < 1)
             {
                 List<Perfil> existe = DBPerfil.PorNome(perfil.TxPerfil);
                 if (existe.Count > 0)
@@ -49,12 +49,25 @@ namespace Fazendas.Controllers
             if (ModelState.IsValid)
             {
                 DBPerfil.Save(perfil);
+                Log log = new Log();
+                log.IdChave = perfil.Id;
+                log.NuAcao = 1;
+                log.IdUsuario = 1;
+                log.IpUsuario = Request.UserHostAddress;
+                log.TxTabela = "Perfil";
+                log.DtTransacao = DateTime.Now;
+                log.TxUrl = Request.Url.AbsoluteUri;
+                log.IdLogAnterior = DBLog.PesqLogAnterior(log.TxTabela, log.IdChave);
+                DBLog.Save(log);
+
+
+
                 return RedirectToAction("Index");
             }
             else
             {
                 ViewBag.Perfil = perfil;
-                return View(perfil.Id < 1 ? "Form" : "Visualizar");
+                return View("Form");
             }
         }
       
