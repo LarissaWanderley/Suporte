@@ -12,9 +12,7 @@ namespace Suporte.Dominio
         public int IdTipoAtendimento { get; set; }
         public string TxMotivo { get; set; }
 
-        [NotMapped]
-        public Error Erro { get; set; }
-
+       
         [ForeignKey("IdTipoAtendimento")]
         public virtual TipoAtendimento TipoAtendimento { get; set; }
     }

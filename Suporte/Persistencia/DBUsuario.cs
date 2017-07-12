@@ -26,10 +26,6 @@ namespace Suporte.Persistencia
             return ExecCmdSQL(cmdText: "SELECT * FROM tbUsuario WHERE txNome = @Nome "
                 , parameters: new List<DbParameter>() { new SqlParameter("@Nome", nome) });
         }
-        internal static List<Usuario> PorPerfil(int idPerfil)
-        {
-            return ExecCmdSQL(cmdText: "SELECT * FROM tbUsuario WHERE IdPerfil = @Perfil "
-                , parameters: new List<DbParameter>() { new SqlParameter("@Perfil", idPerfil) });
-        }
+        
     }
 }

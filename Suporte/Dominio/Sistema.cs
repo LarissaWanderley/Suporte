@@ -12,7 +12,5 @@ namespace Suporte.Dominio
         public string TxSistema { get; set; }
         public string TxIdentificador { get; set; }
 
-        [NotMapped]
-        public Error Erro { get; set; }
     }
 }

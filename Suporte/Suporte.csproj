@@ -184,7 +184,7 @@
     <Content Include="Views\Home\Bootstrap.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Menu\Index.cshtml" />
-    <Content Include="Views\Perfil\Incluir.cshtml" />
+    <Content Include="Views\Perfil\Visualizar.cshtml" />
     <Content Include="Views\Perfil\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_MenuSuperior.cshtml" />
@@ -195,6 +195,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Views\Perfil\Form.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

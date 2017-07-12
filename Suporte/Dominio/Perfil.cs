@@ -9,9 +9,8 @@ namespace Suporte.Dominio
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        [Required,MaxLength(50)] 
         public string TxPerfil { get; set; }
 
-        [NotMapped]
-        public Error Erro { get; set; }
     }
 }

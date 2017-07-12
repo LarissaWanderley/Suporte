@@ -8,7 +8,7 @@ namespace Suporte.Dominio
     public class Error
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Message { get; set; }
         public string StackTrace { get; set; }
         public DateTime DateCreated { get; set; }

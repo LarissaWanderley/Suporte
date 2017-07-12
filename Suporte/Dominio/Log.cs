@@ -16,7 +16,7 @@ namespace Suporte.Dominio
         public DateTime DtTransacao { get; set; }
         public string TxUrl { get; set; }
         public string IpUsuario { get; set; }
-        public Guid? IdLogAnterior { get; set; }
+        public int? IdLogAnterior { get; set; }
 
         [NotMapped]
         public Error Erro { get; set; }

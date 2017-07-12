@@ -11,7 +11,5 @@ namespace Suporte.Dominio
         public int Id { get; set; }
         public string TxSolucao { get; set; }
 
-        [NotMapped]
-        public Error Erro { get; set; }
     }
 }

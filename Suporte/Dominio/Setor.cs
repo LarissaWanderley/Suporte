@@ -14,9 +14,6 @@ namespace Suporte.Dominio
         public bool IsArquiva { get; set; }
         public int? NuSetor { get; set; }
 
-        [NotMapped]
-        public Error Erro { get; set; }
-
         [ForeignKey("IdSetorPai")]
         public virtual Setor SetorPai { get; set; }
     }

@@ -20,67 +20,51 @@ namespace Fazendas.Controllers
             List<Perfil> perfil = DBPerfil.GetAll();
             return View(perfil);
         }
-        public ActionResult Incluir()
+
+        public ActionResult Form(int id)
         {
-            ViewBag.Perfil = new Perfil();
+            if (id == 0)
+            {
+                ViewBag.Perfil = new Perfil();
+            }
+            else
+            {
+                Perfil perfil = DBPerfil.GetById(id);
+                ViewBag.Perfil = perfil;
+            } 
             return View();
         }
         [HttpPost]
-        public ActionResult Adiciona(Perfil perfil)
+        public ActionResult Gravar(Perfil perfil)
         {
-            List<Perfil> existe = DBPerfil.PorNome(perfil.TxPerfil);
-            if (existe.Count > 0)
+            if (perfil.Id < 1)
             {
-                ModelState.AddModelError("perfuk.NomeJaCadastrado", "Perfil já Cadastrado");
-            }
-            if (ModelState.IsValid)
-            {
-                DBPerfil.Save(perfil);
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                ViewBag.Perfil = perfil;
-                return View("Form");
-            }
-        }
-        public ActionResult Visualizar(int id)
-        {
-            Perfil perfil = DBPerfil.GetById(id);
-            ViewBag.Perfil = perfil;
-            return View();
-        }
-        public ActionResult Altera(Perfil perfil)
-        {
-            if (ModelState.IsValid)
-            {
-                DBPerfil.Save(perfil);
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                ViewBag.Perfil = perfil;
-                return View("Visualiza");
-            }
-
-        }
-        public ActionResult Excluir(int id)
-        {
-            {
-                List<Usuario> existe = DBUsuario.PorPerfil(id);
+                List<Perfil> existe = DBPerfil.PorNome(perfil.TxPerfil);
                 if (existe.Count > 0)
                 {
-                    TempData["Error"] = "Perfil já Cadastrado";
-                    return RedirectToAction("Index");
+                    ModelState.AddModelError("perfil.NomeJaCadastrado", "Perfil já Cadastrado");
                 }
-                else
-                {
-                    DBPerfil.Delete(id);
-                    return RedirectToAction("Index");
-                }
-
-
             }
+            
+            if (ModelState.IsValid)
+            {
+                DBPerfil.Save(perfil);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Perfil = perfil;
+                return View(perfil.Id < 1 ? "Form" : "Visualizar");
+            }
+        }
+      
+        public ActionResult Excluir(int id)
+        {
+
+            DBPerfil.Delete(id);
+            return RedirectToAction("Index");
+
+
         }
     }
 }

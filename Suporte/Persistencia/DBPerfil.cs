@@ -12,7 +12,7 @@ namespace Suporte.Persistencia
     {
         internal static List<Perfil> PorNome(string nome)
         {
-            return ExecCmdSQL(cmdText: "SELECT * FROM tbPerfil WHERE Nome = @Nome "
+            return ExecCmdSQL(cmdText: "SELECT * FROM tbPerfil WHERE TxPerfil = @Nome "
                 , parameters: new List<DbParameter>() { new SqlParameter("@Nome", nome) });
         }
     }

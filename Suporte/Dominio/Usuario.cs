@@ -25,7 +25,5 @@ namespace Suporte.Dominio
         public string ConnectionId { get; set; }
         public DateTime DtCadastro { get; set; }
 
-        [NotMapped]
-        public Error Erro { get; set; }
     }
 }

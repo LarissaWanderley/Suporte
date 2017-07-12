@@ -12,9 +12,6 @@ namespace Suporte.Dominio
         public int IdUsuario { get; set; }
         public int IdPerfil { get; set; }
 
-        [NotMapped]
-        public Error Erro { get; set; }
-
         [ForeignKey("IdUsuario")]
         public virtual Usuario Usuario { get; set; }
         [ForeignKey("IdPerfil")]

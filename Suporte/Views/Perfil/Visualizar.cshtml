@@ -1,0 +1,15 @@
+﻿<form action="/Perfil/Gravar" method="post">
+    @Html.AntiForgeryToken()
+    @Html.ValidationMessage("perfil.NomeJaCadastrado", null, new { @class = "label btn-danger" })
+    @Html.ValidationMessage("perfil.TxPerfil", null, new { @class = "label btn-danger" })
+    <br /><br />
+    <label for="nome">Id:</label>
+    <input id="nome" name="perfil.Id" value="@ViewBag.perfil.Id" class="form-control" maxlength="5" size="5" />
+    <label for="nome">Nome:</label>
+    <input id="nome" name="perfil.TxPerfil" value="@ViewBag.perfil.TxPerfil" class="form-control" maxlength="30" size="30" />
+    <br />
+    <div class="col-md-12">
+        @Html.ActionLink("Listar", "Index", "Perfil", null, new { @class = "btn btn-info btn-xs pull-right" })
+        <input type="submit" value="Gravar" class="btn btn-info btn-xs pull-right" />
+    </div>
+</form>

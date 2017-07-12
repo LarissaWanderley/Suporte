@@ -13,9 +13,6 @@ namespace Suporte.Dominio
         public int IdSetor { get; set; }
         public bool IsPrincipal { get; set; }
 
-        [NotMapped]
-        public Error Erro { get; set; }
-
         [ForeignKey("IdUsuario")]
         public virtual Usuario Usuario { get; set; }
         [ForeignKey("IdSetor")]

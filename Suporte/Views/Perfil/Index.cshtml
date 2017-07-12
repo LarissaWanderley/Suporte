@@ -5,8 +5,7 @@
         <tr>
             <th>Id</th>
             <th>Nome</th>
-            <th>Descrição</th>
-            <th>@Html.ActionLink("Incluir", "Incluir", "Perfil", null, new { @class = "btn btn-info btn-xs  pull-right" })</th>
+            <th>@Html.ActionLink("Incluir", "Form", "Perfil", new { id = 0 }, new { @class = "btn btn-info btn-xs  pull-right" })</th>
         </tr>
     </thead>
     <tbody>
@@ -14,8 +13,7 @@
             {
             <tr>
                 <td>@perfil.Id</td>
-                <td>@Html.ActionLink(perfil.txNome, "Visualiza", new { id = perfil.Id })</td>
-                @*<td>@perfil.Descricao</td>*@
+                <td>@Html.ActionLink(perfil.TxPerfil, "Form", new { id = perfil.Id })</td>
                 <td>@Html.ActionLink("Excluir", "Excluir", "Perfil", new { id = perfil.Id }, new { @class = "btn btn-info btn-xs  pull-right", @onclick = "JavaScript:return(confirm('Confirma a exclusão do registro?'))" })</td>
             </tr>
         }
