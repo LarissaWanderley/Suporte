@@ -1,4 +1,5 @@
-﻿using Suporte.Dominio;
+﻿using Newtonsoft.Json;
+using Suporte.Dominio;
 using Suporte.Persistencia;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,8 @@ namespace Fazendas.Controllers
         [HttpPost]
         public ActionResult Gravar(Perfil perfil)
         {
-            if ( ModelState.IsValid && perfil.Id < 1)
+            int nuAcao = perfil.Id < 1 ? 1 : 2; 
+            if (nuAcao == 1)
             {
                 List<Perfil> existe = DBPerfil.PorNome(perfil.TxPerfil);
                 if (existe.Count > 0)
@@ -48,25 +50,43 @@ namespace Fazendas.Controllers
             
             if (ModelState.IsValid)
             {
-                DBPerfil.Save(perfil);
-                Log log = new Log();
-                log.IdChave = perfil.Id;
-                log.NuAcao = 1;
-                log.IdUsuario = 1;
-                log.IpUsuario = Request.UserHostAddress;
-                log.TxTabela = "Perfil";
-                log.DtTransacao = DateTime.Now;
-                log.TxUrl = Request.Url.AbsoluteUri;
-
-                int i = DBLog.PesqLogAnterior(log.TxTabela, log.IdChave);
-                if (i > 0)
-                {
-                    log.IdLogAnterior = i ;
-                }
-               
-                DBLog.Save(log);
 
 
+                LogDetalhe logDetalheAnterior = DBLogDetalhe.PesqUltimo("Perfil", perfil.Id);
+                
+                if (logDetalheAnterior == null || logDetalheAnterior.TxObjeto != JsonConvert.SerializeObject(perfil))
+                    {
+                        Perfil antigo = DBPerfil.GetById(perfil.Id);
+                        DBPerfil.Save(perfil);
+                        Log log = new Log();
+                        log.IdChave = perfil.Id;
+                        log.NuAcao = nuAcao;
+                        log.IdUsuario = 1;
+                        log.IpUsuario = Request.UserHostAddress;
+                        log.TxTabela = "Perfil";
+                        log.DtTransacao = DateTime.Now;
+                        log.TxUrl = Request.Url.AbsoluteUri;
+
+                        int idLogAnterior = DBLog.PesqLogAnterior(log.TxTabela, log.IdChave);
+                        if (idLogAnterior > 0)
+                        {
+                            log.IdLogAnterior = idLogAnterior;
+                            
+                            LogDetalhe logDetalhe = new LogDetalhe();
+                            logDetalhe.IdLog = idLogAnterior;
+                            logDetalhe.TxObjeto = JsonConvert.SerializeObject(antigo);
+                            DBLogDetalhe.Save(logDetalhe);
+                        }
+
+                        DBLog.Save(log);
+
+                    }             
+                //  string aa = JsonConvert.SerializeObject(log);
+
+                //  Log p1 = JsonConvert.DeserializeObject<Log>(aa);
+                //  ou  
+                //  Log p = new Log();
+                //  JsonConvert.PopulateObject(aa, p);
 
                 return RedirectToAction("Index");
             }

@@ -8,10 +8,9 @@ using System.Web;
 
 namespace Suporte.Persistencia
 {
-    public class DBLog : DBBroker.Engine.DBBroker<Log>
+    public class DBLogDetalhe : DBBroker.Engine.DBBroker<LogDetalhe>
     {
-
-        internal static int PesqLogAnterior(string tabela, int idChave)
+        public static LogDetalhe PesqUltimo(string tabela, int idChave)
         {
             var paramentros = new List<DbParameter>()
             {
@@ -19,12 +18,9 @@ namespace Suporte.Persistencia
                 new SqlParameter("@IdChave", idChave)
             };
 
-            Log procurado = new Log();
-
-            procurado = ExecCmdSQL(cmdText: "SELECT ISNULL(IdLog,0) as IdLog FROM tbLog WHERE TxTabela = @Tabela AND IdChave = @IdChave ORDER BY IdLog desc "
+            return ExecCmdSQL(cmdText: "SELECT ld.* FROM tbLog l INNER JOIN tbLogDetalhe ld ON ld.IdLog = l.IdLog WHERE TxTabela = @Tabela AND IdChave = @IdChave ORDER BY IdLog desc "
             , parameters: paramentros).FirstOrDefault();
 
-            return (procurado == null) ? 0 : procurado.Id;
         }
 
     }

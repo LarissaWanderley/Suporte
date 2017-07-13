@@ -43,6 +43,10 @@
       <HintPath>..\packages\DBBroker.1.1.0\lib\net20\DBBroker.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -59,6 +63,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Vse.Web.Serialization, Version=1.0.4.0, Culture=neutral, PublicKeyToken=fb838febb49f46b2, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vse.Web.Serialization.ControlledSerializationJsonConverter.1.0.4\lib\net45\Vse.Web.Serialization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -165,6 +173,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Persistencia\DBAtendimento.cs" />
+    <Compile Include="Persistencia\DBLogDetalhe.cs" />
     <Compile Include="Persistencia\DBMarca.cs" />
     <Compile Include="Persistencia\DBMotivo.cs" />
     <Compile Include="Persistencia\DBLog.cs" />

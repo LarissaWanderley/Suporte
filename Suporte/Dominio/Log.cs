@@ -30,7 +30,7 @@ namespace Suporte.Dominio
         public string TxObjeto { get; set; }
 
       
-        [ForeignKey("IdLog")]
-        public virtual Log Log { get; set; }
+        //[ForeignKey("IdLog")]
+        //public virtual Log Log { get; set; }
     }
 }
