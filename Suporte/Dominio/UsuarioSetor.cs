@@ -12,6 +12,7 @@ namespace Suporte.Dominio
         public int IdUsuario { get; set; }
         public int IdSetor { get; set; }
         public bool IsPrincipal { get; set; }
+        public int IdLog { get; set; }
 
         [ForeignKey("IdUsuario")]
         public virtual Usuario Usuario { get; set; }

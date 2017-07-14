@@ -51,34 +51,36 @@ namespace Fazendas.Controllers
             if (ModelState.IsValid)
             {
 
+             //   LogDetalhe logDetalheAnterior = DBLogDetalhe.PesqUltimo("Perfil", perfil.Id);
 
-                LogDetalhe logDetalheAnterior = DBLogDetalhe.PesqUltimo("Perfil", perfil.Id);
-                
-                if (logDetalheAnterior == null || logDetalheAnterior.TxObjeto != JsonConvert.SerializeObject(perfil))
+                Perfil antigo = DBPerfil.GetById(perfil.Id);
+                int idLogAnterioraaa = antigo.IdLog;
+                antigo.IdLog = perfil.IdLog;
+
+                if (nuAcao == 1 || !antigo.Equals(perfil))
                     {
-                        Perfil antigo = DBPerfil.GetById(perfil.Id);
-                        DBPerfil.Save(perfil);
-                        Log log = new Log();
-                        log.IdChave = perfil.Id;
-                        log.NuAcao = nuAcao;
-                        log.IdUsuario = 1;
-                        log.IpUsuario = Request.UserHostAddress;
-                        log.TxTabela = "Perfil";
-                        log.DtTransacao = DateTime.Now;
-                        log.TxUrl = Request.Url.AbsoluteUri;
+                    DBPerfil.Save(perfil);
+                    Log log = new Log();
+                    log.IdChave = perfil.Id;
+                    log.NuAcao = nuAcao;
+                    log.IdUsuario = 1;
+                    log.IpUsuario = Request.UserHostAddress;
+                    log.TxTabela = "Perfil";
+                    log.DtTransacao = DateTime.Now;
+                    log.TxUrl = Request.Url.AbsoluteUri;
 
-                        int idLogAnterior = DBLog.PesqLogAnterior(log.TxTabela, log.IdChave);
-                        if (idLogAnterior > 0)
-                        {
-                            log.IdLogAnterior = idLogAnterior;
-                            
-                            LogDetalhe logDetalhe = new LogDetalhe();
-                            logDetalhe.IdLog = idLogAnterior;
-                            logDetalhe.TxObjeto = JsonConvert.SerializeObject(antigo);
-                            DBLogDetalhe.Save(logDetalhe);
-                        }
-
-                        DBLog.Save(log);
+                    int idLogAnterior = DBLog.PesqLogAnterior(log.TxTabela, log.IdChave);
+                    if (idLogAnterior > 0)
+                    {
+                        log.IdLogAnterior = idLogAnterior;
+                        LogDetalhe logDetalhe = new LogDetalhe();
+                        logDetalhe.IdLog = idLogAnterior;
+                        logDetalhe.TxObjeto = JsonConvert.SerializeObject(antigo);
+                        DBLogDetalhe.Save(logDetalhe);
+                    }
+                    DBLog.Save(log);
+                    perfil.IdLog = log.Id;
+                    DBPerfil.Save(perfil);
 
                     }             
                 //  string aa = JsonConvert.SerializeObject(log);

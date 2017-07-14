@@ -11,6 +11,7 @@ namespace Suporte.Dominio
         public int Id { get; set; }
         public int IdUsuario { get; set; }
         public int IdPerfil { get; set; }
+        public int IdLog { get; set; }
 
         [ForeignKey("IdUsuario")]
         public virtual Usuario Usuario { get; set; }

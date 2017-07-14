@@ -11,8 +11,8 @@ namespace Suporte.Dominio
         public int Id { get; set; }
         public int IdTipoAtendimento { get; set; }
         public string TxMotivo { get; set; }
+        public int IdLog { get; set; }
 
-       
         [ForeignKey("IdTipoAtendimento")]
         public virtual TipoAtendimento TipoAtendimento { get; set; }
     }

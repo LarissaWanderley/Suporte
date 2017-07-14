@@ -17,6 +17,7 @@ namespace Suporte.Dominio
         public DateTime DtCadastro { get; set; }
         public string TxProtocolo { get; set; }
         public int NuPrioridade { get; set; }
+        public int IdLog { get; set; }
 
         [NotMapped]
         public Error Erro { get; set; }

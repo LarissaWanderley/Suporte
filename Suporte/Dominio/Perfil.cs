@@ -12,6 +12,7 @@ namespace Suporte.Dominio
 
         [Required,MaxLength(50)] 
         public string TxPerfil { get; set; }
+        public int IdLog { get; set; }
 
     }
 }

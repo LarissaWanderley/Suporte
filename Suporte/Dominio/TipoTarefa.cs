@@ -10,6 +10,7 @@ namespace Suporte.Dominio
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string TxTipoTarefa { get; set; }
+        public int IdLog { get; set; }
 
         [NotMapped]
         public Error Erro { get; set; }

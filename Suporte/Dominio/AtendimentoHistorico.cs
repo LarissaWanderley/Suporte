@@ -16,6 +16,7 @@ namespace Suporte.Dominio
         public string TxObservacao { get; set; }
         public int NuTipo { get; set; }
         public int NuStatus { get; set; }
+        public int IdLog { get; set; }
 
         [NotMapped]
         public Error Erro { get; set; }

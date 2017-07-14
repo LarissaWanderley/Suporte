@@ -13,6 +13,7 @@ namespace Suporte.Dominio
         public string TxSetor { get; set; }
         public bool IsArquiva { get; set; }
         public int? NuSetor { get; set; }
+        public int IdLog { get; set; }
 
         [ForeignKey("IdSetorPai")]
         public virtual Setor SetorPai { get; set; }

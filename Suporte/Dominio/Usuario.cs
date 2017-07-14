@@ -24,6 +24,7 @@ namespace Suporte.Dominio
         public int? Hits { get; set; }
         public string ConnectionId { get; set; }
         public DateTime DtCadastro { get; set; }
+        public int IdLog { get; set; }
 
     }
 }

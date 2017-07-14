@@ -10,6 +10,6 @@ namespace Suporte.Dominio
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string TxMarca { get; set; }
-
+        public int IdLog { get; set; }
     }
 }

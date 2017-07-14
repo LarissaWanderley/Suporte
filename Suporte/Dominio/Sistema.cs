@@ -11,6 +11,6 @@ namespace Suporte.Dominio
         public int Id { get; set; }
         public string TxSistema { get; set; }
         public string TxIdentificador { get; set; }
-
+        public int IdLog { get; set; }
     }
 }

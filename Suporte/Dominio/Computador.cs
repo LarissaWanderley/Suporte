@@ -20,7 +20,7 @@ namespace Suporte.Dominio
         public int NuTipo { get; set; }
         public int NuTipoMemoria { get; set; }
         public int NuStatus { get; set; } //1-Operante //2-Estoque//3-Aguardando Peça //4-Inutilizado
-
+        public int IdLog { get; set; }
 
         [ForeignKey("IdMarca")]
         public virtual Marca Marca { get; set; }
