@@ -54,7 +54,7 @@ namespace Fazendas.Controllers
              //   LogDetalhe logDetalheAnterior = DBLogDetalhe.PesqUltimo("Perfil", perfil.Id);
 
                 Perfil antigo = DBPerfil.GetById(perfil.Id);
-                int idLogAnterioraaa = antigo.IdLog;
+                int idLogAnterior = antigo.IdLog;
                 antigo.IdLog = perfil.IdLog;
 
                 if (nuAcao == 1 || !antigo.Equals(perfil))
@@ -68,23 +68,23 @@ namespace Fazendas.Controllers
                     log.TxTabela = "Perfil";
                     log.DtTransacao = DateTime.Now;
                     log.TxUrl = Request.Url.AbsoluteUri;
-
-                    int idLogAnterior = DBLog.PesqLogAnterior(log.TxTabela, log.IdChave);
-                    if (idLogAnterior > 0)
-                    {
-                        log.IdLogAnterior = idLogAnterior;
-                        LogDetalhe logDetalhe = new LogDetalhe();
-                        logDetalhe.IdLog = idLogAnterior;
-                        logDetalhe.TxObjeto = JsonConvert.SerializeObject(antigo);
-                        DBLogDetalhe.Save(logDetalhe);
-                    }
+                    log.IdLogAnterior = idLogAnterior;
                     DBLog.Save(log);
                     perfil.IdLog = log.Id;
                     DBPerfil.Save(perfil);
 
+                  //  
+                    if (idLogAnterior > 0)
+                        {
+                            antigo.IdLog = idLogAnterior;
+                      
+                            LogDetalhe logDetalhe = new LogDetalhe();
+                            logDetalhe.IdLog = idLogAnterior;
+                            logDetalhe.TxObjeto = JsonConvert.SerializeObject(antigo);
+                            DBLogDetalhe.Save(logDetalhe);
+                        }
                     }             
                 //  string aa = JsonConvert.SerializeObject(log);
-
                 //  Log p1 = JsonConvert.DeserializeObject<Log>(aa);
                 //  ou  
                 //  Log p = new Log();
@@ -101,6 +101,23 @@ namespace Fazendas.Controllers
       
         public ActionResult Excluir(int id)
         {
+            Log log = new Log();
+            log.IdChave = id;
+            log.NuAcao = 3;
+            log.IdUsuario = 1;
+            log.IpUsuario = Request.UserHostAddress;
+            log.TxTabela = "Perfil";
+            log.DtTransacao = DateTime.Now;
+            log.TxUrl = Request.Url.AbsoluteUri;
+            log.IdLogAnterior = DBLog.PesqLogAnterior(log.TxTabela, log.IdChave);
+            DBLog.Save(log);
+
+            Perfil antigo = DBPerfil.GetById(id);
+
+            LogDetalhe logDetalhe = new LogDetalhe();
+            logDetalhe.IdLog = id;
+            logDetalhe.TxObjeto = JsonConvert.SerializeObject(antigo);
+            DBLogDetalhe.Save(logDetalhe);
 
             DBPerfil.Delete(id);
             return RedirectToAction("Index");

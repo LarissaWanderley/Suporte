@@ -15,5 +15,11 @@ namespace Suporte.Persistencia
             return ExecCmdSQL(cmdText: "SELECT * FROM tbPerfil WHERE TxPerfil = @Nome "
                 , parameters: new List<DbParameter>() { new SqlParameter("@Nome", nome) });
         }
+        /*select * from tbPerfil p inner join tblog l on p.IdLog = l.IdLog
+        --
+        select * from tbPerfil p
+        inner join tblog l on p.IdPerfil = l.IdChave  and l.TxTabela = 'perfil'
+        inner join tbLogDetalhe ld on l.IdLog = ld.IdLog
+        order by p.IdPerfil, l.IdLog*/
     }
 }
