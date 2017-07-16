@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Suporte.Persistencia
 {
-    public class DBTipoTarefa : DBBroker.Engine.DBBroker<DBTipoTarefa>
+    public class DBTipoTarefa : DBBroker.Engine.DBBroker<TipoTarefa>
     {
     }
 }

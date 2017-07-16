@@ -206,6 +206,13 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Views\Perfil\Form.cshtml" />
+    <Content Include="Views\Sistema\Index.cshtml" />
+    <Content Include="Views\Solucao\Index.cshtml" />
+    <Content Include="Views\Computador\Index.cshtml" />
+    <Content Include="Views\Motivo\Index.cshtml" />
+    <Content Include="Views\Marca\Index.cshtml" />
+    <Content Include="Views\TipoTarefa\Index.cshtml" />
+    <Content Include="Views\TipoAtendimento\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -217,14 +224,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Atendimento\" />
-    <Folder Include="Views\Computador\" />
-    <Folder Include="Views\Marca\" />
-    <Folder Include="Views\Motivo\" />
     <Folder Include="Views\Setor\" />
-    <Folder Include="Views\Sistema\" />
-    <Folder Include="Views\Solucao\" />
-    <Folder Include="Views\TipoAtendimento\" />
-    <Folder Include="Views\TipoTarefa\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

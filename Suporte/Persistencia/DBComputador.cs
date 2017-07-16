@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Suporte.Persistencia
 {
-    public class Computador : DBBroker.Engine.DBBroker<Computador>
+    public class DBComputador : DBBroker.Engine.DBBroker<Computador>
    {
    
     }

@@ -15,6 +15,7 @@ namespace Suporte.Controllers
         // GET: Perfil
         public ActionResult Index()
         {
+            ViewBag.Title = "Lista Perfil";
             if (TempData["Error"] != null)
             {
                 ViewBag.Error = TempData["Error"];

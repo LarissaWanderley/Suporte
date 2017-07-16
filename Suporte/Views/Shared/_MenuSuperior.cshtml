@@ -1,7 +1,7 @@
 ﻿<nav class="navbar navbar-default">
     <div class="container">
 
-        <div class="navbar-header">
+        <div class="navbar-header col-lg-8">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse-navbar" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -27,16 +27,37 @@
         </div>
 
         <div class="collapse navbar-collapse" id="collapse-navbar">
-            <ul class="nav navbar-nav pull-right">
+            <ul class="nav navbar-nav">
                
-                <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn btn-default navbar-btn btn-xs" })</li>
-                <li>@Html.ActionLink("Grupo", "Index", "Grupo", null, new { @class = "btn btn-default navbar-btn btn-xs" })</li>
-                <li>@Html.ActionLink("Subgrupo", "Index", "SubGrupo", null, new { @class = "btn btn-default navbar-btn btn-xs" })</li>
-                <li>@Html.ActionLink("Movimento", "Index", "Movimento", null, new { @class = "btn btn-default navbar-btn btn-xs" })</li>
-                <li>@Html.ActionLink("Perfil", "Index", "Perfil", null, new { @class = "btn btn-default navbar-btn btn-xs" })</li>
-                <li>@Html.ActionLink("Usuários", "Index", "Usuario", null, new { @class = "btn btn-default navbar-btn btn-xs" })</li>
-                <li>@Html.ActionLink("Bootstrap", "Bootstrap", "Home", null, new { @class = "btn btn-default navbar-btn btn-xs" })</li>
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Bootstrap", "Bootstrap", "Home")</li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tabelas <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Tipo de Atentimento", "Index", "TipoAtendimento")</li>
+                        <li>@Html.ActionLink("Tipo de Tarefas", "Index", "TipoTarefa")</li>
+                        <li>@Html.ActionLink("Sistema", "Index", "Sistema")</li>
+                        <li>@Html.ActionLink("Solução", "Index", "Solucao")</li>
+                        <li>@Html.ActionLink("Motivo", "Index", "Motivo")</li>
+                        <li>@Html.ActionLink("Marca", "Index", "Marca")</li>
+                        <li>@Html.ActionLink("Computador", "Index", "Computador")</li>
+                        
+                    </ul>
+                </li>
+                <li>@Html.ActionLink("Chamadas", "Index", "Chamadas")</li>
+
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Segurança<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Setor", "Index", "Setor")</li>
+                        <li>@Html.ActionLink("Perfil", "Index", "Perfil")</li>
+                        <li>@Html.ActionLink("Usuários", "Index", "Usuario")</li>
+
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
+   
 </nav>

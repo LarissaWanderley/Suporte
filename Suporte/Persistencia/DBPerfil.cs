@@ -16,22 +16,11 @@ namespace Suporte.Persistencia
             return ExecCmdSQL(cmdText: "SELECT * FROM tbPerfil WHERE TxPerfil = @Nome "
                 , parameters: new List<DbParameter>() { new SqlParameter("@Nome", nome) });
         }
-        /*select * from tbPerfil p inner join tblog l on p.IdLog = l.IdLog
-        --
-        select * from tbPerfil p
-        inner join tblog l on p.IdPerfil = l.IdChave  and l.TxTabela = 'perfil'
-        inner join tbLogDetalhe ld on l.IdLog = ld.IdLog
-        order by p.IdPerfil, l.IdLog*/
-
-
+       
         public static bool Sava(Perfil perfil, string ipUsuario, string txUrl)
         {
             int nuAcao = perfil.Id < 1 ? 1 : 2;
             Perfil antigo = DBPerfil.GetById(perfil.Id);
-            int idLogAnterior = antigo.IdLog;
-            //antigo.IdLog = 0;
-            //perfil.IdLog = 0;
-            //if (nuAcao == 1 || ! antigo.Equals(perfil))
             if (nuAcao == 1 || antigo.Id != perfil.Id || antigo.IdLog != perfil.IdLog || antigo.TxPerfil != perfil.TxPerfil )
             {
                 Log log = new Log();
@@ -41,27 +30,21 @@ namespace Suporte.Persistencia
                 log.TxTabela = "Perfil";
                 log.DtTransacao = DateTime.Now;
                 log.TxUrl = txUrl;
-                log.IdLogAnterior = idLogAnterior;
+                log.IdLogAnterior = antigo.IdLog;
                 //DbTransaction transacao = GetTransaction();
                 try
                 {
-                    DBPerfil.Save(perfil);
-                    //DBPerfil.Save(perfil, transacao);
+                    DBPerfil.Save(perfil);        //DBPerfil.Save(perfil, transacao);
                     log.IdChave = perfil.Id;
-                    DBLog.Save(log);
-                    //   DBLog.Save(log, transacao);
+                    DBLog.Save(log);              //DBLog.Save(log, transacao);
                     perfil.IdLog = log.Id;
-                    DBPerfil.Save(perfil);
-                    //   DBPerfil.Save(perfil,transacao);
-                    if (idLogAnterior > 0)
+                    DBPerfil.Save(perfil);        //DBPerfil.Save(perfil,transacao);
+                    if (antigo.IdLog > 0)
                     {
                         LogDetalhe logDetalhe = new LogDetalhe();
-                        logDetalhe.IdLog = idLogAnterior;
-                        antigo.IdLog = idLogAnterior;
+                        logDetalhe.IdLog = antigo.IdLog;
                         logDetalhe.TxObjeto = JsonConvert.SerializeObject(antigo);//Log t = JsonConvert.DeserializeObject<Log>(l.txObjeto)
-                       
-                        DBLogDetalhe.Save(logDetalhe);
-                        // DBLogDetalhe.Save(logDetalhe, transacao);
+                        DBLogDetalhe.Save(logDetalhe);   // DBLogDetalhe.Save(logDetalhe, transacao);
                     }
                     return true;
                     // transacao.Commit();
@@ -73,7 +56,6 @@ namespace Suporte.Persistencia
                     //   transacao.Rollback();
                     return false;
                     //}
-
                 }
 
             }
@@ -113,4 +95,10 @@ namespace Suporte.Persistencia
         }
     }
 }
-   
+/*select * from tbPerfil p inner join tblog l on p.IdLog = l.IdLog
+    --
+    select * from tbPerfil p
+    inner join tblog l on p.IdPerfil = l.IdChave  and l.TxTabela = 'perfil'
+    inner join tbLogDetalhe ld on l.IdLog = ld.IdLog
+    order by p.IdPerfil, l.IdLog*/
+

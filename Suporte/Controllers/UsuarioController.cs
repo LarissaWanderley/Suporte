@@ -13,6 +13,7 @@ namespace Fazendas.Controllers
         // GET: Usuario
         public ActionResult Index()
         {
+            ViewBag.Title = "Lista Usuário";
             List<Usuario> usuarios = DBUsuario.GetAll();
             return View(usuarios);
         }

@@ -11,6 +11,7 @@ namespace Suporte.Controllers
         // GET: Setor
         public ActionResult Index()
         {
+            ViewBag.Title = "Lista Setor";
             return View();
         }
     }

@@ -1,0 +1,21 @@
+﻿@model IList<Suporte.Dominio.Computador>
+<label class="label  btn-danger">@ViewBag.Error</label>
+<table class="table table-condensed table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>@Html.ActionLink("Incluir", "Form", "Computador", new { id = 0 }, new { @class = "btn btn-info btn-xs  pull-right" })</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var computador in Model)
+            {
+            <tr>
+                <td>@computador.Id</td>
+                <td>@Html.ActionLink(computador.TxComputador, "Form", new { id = computador.Id })</td>
+                <td>@Html.ActionLink("Excluir", "Excluir", "Computador", new { id = computador.Id }, new { @class = "btn btn-info btn-xs  pull-right", @onclick = "JavaScript:return(confirm('Confirma a exclusão do registro?'))" })</td>
+            </tr>
+        }
+    </tbody>
+</table>

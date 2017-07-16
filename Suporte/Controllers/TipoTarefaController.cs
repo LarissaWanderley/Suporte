@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+using Suporte.Dominio;
+using Suporte.Persistencia;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +14,13 @@ namespace Suporte.Controllers
         // GET: TipoTarefa
         public ActionResult Index()
         {
-            return View();
+            ViewBag.Title = "Lista Tipo Tarefa";
+            if (TempData["Error"] != null)
+            {
+                ViewBag.Error = TempData["Error"];
+            }
+            List<TipoTarefa> tipoTarefa = DBTipoTarefa.GetAll();
+            return View(tipoTarefa);
         }
     }
 }
