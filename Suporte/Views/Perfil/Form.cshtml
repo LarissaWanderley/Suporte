@@ -2,12 +2,14 @@
     @Html.AntiForgeryToken()
     @Html.ValidationMessage("perfil.NomeJaCadastrado", null, new { @class = "label btn-danger" })
     @Html.ValidationMessage("perfil.TxPerfil", null, new { @class = "label btn-danger" })
+    @Html.ValidationMessage("perfil.ErroGrava", null, new { @class = "label btn-danger" })
     <br /><br />
 
     @if (ViewBag.perfil.Id != 0)
     {
         <label for="nome">Id:</label>
         <input id="nome" name="perfil.Id" value="@ViewBag.perfil.Id" class="form-control" maxlength="5" size="5"  readonly="readonly"/>
+        <input id="nome" name="perfil.IdLog" value="@ViewBag.perfil.IdLog" class="form-control" maxlength="10" size="5" />
     }
     <label for="nome">Nome:</label>
     <input id="nome" name="perfil.TxPerfil" value="@ViewBag.perfil.TxPerfil" class="form-control" maxlength="30" size="30" />
