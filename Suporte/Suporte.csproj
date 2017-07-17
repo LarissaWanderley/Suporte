@@ -139,6 +139,7 @@
     <Compile Include="Controllers\AtendimentoController.cs" />
     <Compile Include="Controllers\ComputadorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MarcaController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MotivoController.cs" />
@@ -213,6 +214,7 @@
     <Content Include="Views\Marca\Index.cshtml" />
     <Content Include="Views\TipoTarefa\Index.cshtml" />
     <Content Include="Views\TipoAtendimento\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

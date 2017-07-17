@@ -9,18 +9,18 @@
                 <span class="icon-bar"></span>
             </button>
 
-            @Html.ActionLink("Fazendas", "Index", "Home", null, new { @class = "brand" })
+            @Html.ActionLink("Suporte", "Index", "Home", null, new { @class = "brand" })
             <p>
                 @if (Session["usuarioLogado"] != null)
                 {
                     @: Bem-Vindo
                     @Session["usuarioLogado"]
-                    @Html.ActionLink("Logout", "Logout", "Autenticacao")
+                    @Html.ActionLink("Sair", "Logout", "Login")
                 }
                 else
                 {
                     @: Olá Visitante,
-                    @Html.ActionLink("Login", "Index", "Autenticacao")
+                    @Html.ActionLink("Entrar", "Index", "Login")
                 }
             </p>
 

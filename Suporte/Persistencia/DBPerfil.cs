@@ -31,31 +31,31 @@ namespace Suporte.Persistencia
                 log.DtTransacao = DateTime.Now;
                 log.TxUrl = txUrl;
                 log.IdLogAnterior = antigo.IdLog;
-                //DbTransaction transacao = GetTransaction();
+                DbTransaction transacao = GetTransaction();
                 try
                 {
-                    DBPerfil.Save(perfil);        //DBPerfil.Save(perfil, transacao);
+                    DBPerfil.Save(perfil, transacao);
                     log.IdChave = perfil.Id;
-                    DBLog.Save(log);              //DBLog.Save(log, transacao);
+                    DBLog.Save(log, transacao);
                     perfil.IdLog = log.Id;
-                    DBPerfil.Save(perfil);        //DBPerfil.Save(perfil,transacao);
+                    DBPerfil.Save(perfil,transacao);
                     if (antigo.IdLog > 0)
                     {
                         LogDetalhe logDetalhe = new LogDetalhe();
                         logDetalhe.IdLog = antigo.IdLog;
                         logDetalhe.TxObjeto = JsonConvert.SerializeObject(antigo);//Log t = JsonConvert.DeserializeObject<Log>(l.txObjeto)
-                        DBLogDetalhe.Save(logDetalhe);   // DBLogDetalhe.Save(logDetalhe, transacao);
+                        DBLogDetalhe.Save(logDetalhe, transacao);
                     }
+                    transacao.Commit();
                     return true;
-                    // transacao.Commit();
                 }
                 catch (Exception ex)
                 {
-                    // if (transacao.Connection != null)
-                    //{
-                    //   transacao.Rollback();
+                    if (transacao.Connection != null)
+                    {
+                        transacao.Rollback();
+                    }
                     return false;
-                    //}
                 }
 
             }
@@ -63,13 +63,13 @@ namespace Suporte.Persistencia
         }
         public static bool Excui(Perfil perfil, string ipUsuario, string txUrl)
         {
-            //DbTransaction transacao = GetTransaction();
+            DbTransaction transacao = GetTransaction();
             try
             {
                 LogDetalhe logDetalhe = new LogDetalhe();
                 logDetalhe.IdLog = perfil.IdLog;
                 logDetalhe.TxObjeto = JsonConvert.SerializeObject(perfil);
-                DBLogDetalhe.Save(logDetalhe);
+                DBLogDetalhe.Save(logDetalhe, transacao);
 
                 Log log = new Log();
                 log.IdChave = perfil.Id;
@@ -80,14 +80,17 @@ namespace Suporte.Persistencia
                 log.DtTransacao = DateTime.Now;
                 log.TxUrl = txUrl;
                 log.IdLogAnterior = perfil.IdLog;
-                DBLog.Save(log);
+                DBLog.Save(log, transacao);
 
                 DBPerfil.Delete(perfil.Id);
                 return true;
             }
             catch (Exception ex)
             {
-
+                if (transacao.Connection != null)
+                {
+                    transacao.Rollback();
+                }
                 return false;
             }
 
