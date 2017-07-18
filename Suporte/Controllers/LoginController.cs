@@ -13,6 +13,11 @@ namespace Suporte.Controllers
         // GET: Login
         public ActionResult Index()
         {
+            ViewBag.Title = "Login";
+            if (TempData["Error"] != null)
+            {
+                ViewBag.Error = TempData["Error"];
+            }
             return View();
         }
         public ActionResult Autentica(String login, String senha)
@@ -26,7 +31,7 @@ namespace Suporte.Controllers
             }
             else
             {
-                ViewBag.Error = "Login/Senha invalidos";
+                TempData["Error"] = "Login/Senha invalidos";
                 return RedirectToAction("Index");
             }
 
